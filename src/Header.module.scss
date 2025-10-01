@@ -1,0 +1,12 @@
+.idolCat {
+    position: absolute;
+    z-index: -1;
+    width: 500px;
+    right: 100px;
+    top: 300px;
+
+
+    @media (max-width: 1216px) {
+        display: none;
+    }
+}

@@ -1,0 +1,63 @@
+.mainContent {
+    display: flex;
+    flex-direction: row;
+}
+
+.LineScrolling {
+    position: relative;
+    padding-left: 95px;
+}
+
+.actuallyCat {
+    position: absolute;
+    left: 50px;
+    top: -82px;
+    width: 300px;
+}
+
+.homePage {
+    padding-left: 200px;
+    padding-right: 425px;
+}
+
+.homeScroller {
+    color: #686868;
+    font-size: 18px;
+
+    max-height: 250px;
+    overflow: scroll;
+}
+
+.SvgSplash {
+    position: absolute;
+    width: 100vw;
+    top: 500px;
+    left: 0;
+
+    z-index: 2;
+}
+
+.CatGirl {
+    position: absolute;
+    top: 370px;
+    left: 78vw;
+
+    z-index: 1;
+}
+
+.SpacerSvgSplash {
+    padding-top: 75vh;
+}
+
+.wrapperArtistNyasso {
+    position: relative;
+
+    padding-top: 300px;
+}
+
+.artistNyasso {
+    position: absolute;
+
+    top: -51px;
+    right: -350px;
+}

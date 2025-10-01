@@ -1,0 +1,144 @@
+footer {
+    position: relative;
+
+    overflow-y: hidden;
+    padding-top: 50px;
+    
+}
+
+footer svg {
+    padding-top: 10px;
+}
+
+.standNyasso {
+    position: absolute;
+
+    left: 33px;
+    top: 10px;
+    width: 20vw;
+}
+
+.footer-nav {
+    position: absolute;
+    width: 100vw;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    align-content: flex-end;
+
+    align-items: center;
+    
+}
+
+.nav, .nav-2 {
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+
+    :global {
+        a {
+            text-decoration: none;
+        }
+    }
+
+    a {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-tagline {
+        font-family: "Concert One", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+
+        font-size: 25px;
+
+        padding: 5px;
+
+        color: #FFFFFF;
+        
+        &:hover {
+            color: #b6b6b6;
+
+            filter: drop-shadow(0 0 5px #b6b6b6);
+        }
+
+        margin-left: auto;
+    }
+
+}
+
+.nav-2 {
+    padding: 10px;
+}
+
+.footer-tagline-right {
+    margin-left: auto;
+
+    padding-top: 10px;
+    padding-right: 15px;
+}
+
+.footer-social-icons {
+    background: rgba(255, 255, 255, 0.29);
+    border-radius: 25px;
+    padding: 8px;
+
+    margin-bottom: 10px;
+}
+
+.social-icons {
+    list-style: none;
+    display: flex;
+
+    margin: 5px;
+    padding: 0;
+
+    @media (max-width: 1305px) {
+        position: unset;
+        
+        //background: red;
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 576px) {
+        position: unset;
+
+        //background: green;
+        flex-wrap: wrap;
+    }
+}
+
+.social-icon a {
+    text-decoration: none;
+    background: white;
+    border-radius: 5px;
+
+    display: flex;
+
+    width: 50px;
+    height: 50px;
+
+    &:hover {
+        svg {
+            transform: scale(0.8);
+            transition: all 0.5s;
+            cursor: pointer;
+
+            color: #3f837b;
+        }
+    }
+
+    svg {
+        margin: auto;
+
+        color:#59baae;
+    }
+
+    margin: 5px;
+    
+}

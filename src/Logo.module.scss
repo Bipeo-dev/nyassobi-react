@@ -1,0 +1,16 @@
+.nyassobi-logo {
+    position: absolute;
+    z-index: 4;
+
+    left: 8.5vw;
+    top: 30px;
+}
+
+.logo {
+    img {
+        width: 400px;
+    }
+    &:hover {
+        filter: drop-shadow(0 0 10px #ff895b61);
+    }
+}
