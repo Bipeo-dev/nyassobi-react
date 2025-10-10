@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 
 import styles from './HomePage.module.scss';
 
@@ -21,8 +21,34 @@ import CatGirl from "../assets/CatGirl.svg";
 import NyassoCarousel from "../NyassoCarousel";
 
 import NyassoArtist from "../assets/Artist_cat.png";
+import { useWordPressPosts } from "../hooks/useWordPressContent";
 
 function HomePage() {
+    const { items: newsPosts, loading: newsLoading, error: newsError } = useWordPressPosts({ first: 9 });
+    const [activeNewsIndex, setActiveNewsIndex] = useState(0);
+
+    useEffect(() => {
+        setActiveNewsIndex(0);
+    }, [newsPosts.length]);
+
+    const stripHtml = (value) => {
+        if (!value) {
+            return "";
+        }
+
+        return value.replace(/<[^>]+>/g, "").trim();
+    };
+
+    const latestTitle = stripHtml(newsPosts[activeNewsIndex]?.title);
+    const newsSubtitle = newsLoading
+        ? "Chargement des actualités..."
+        : newsError
+            ? "Actualités indisponibles"
+            : latestTitle || "Dernières actualités";
+
+    const handleCarouselSlideChange = useCallback((index) => {
+        setActiveNewsIndex(index);
+    }, []);
 
     return (<motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
         <div className={styles['mainContent']}>
@@ -54,8 +80,13 @@ function HomePage() {
 
                     <div className={styles['SpacerSvgSplash']}></div>
                     
-                    <TitleNyasso title="News" subtitle="Atelier PNG Tuber"/>
-                    <NyassoCarousel/>
+                    <TitleNyasso title="News" subtitle={newsSubtitle}/>
+                    <NyassoCarousel
+                        posts={newsPosts}
+                        loading={newsLoading}
+                        error={newsError}
+                        onSlideChange={handleCarouselSlideChange}
+                    />
 
                     <div className={styles['wrapperArtistNyasso']}>
                         <img className={styles['artistNyasso']} src={NyassoArtist} />

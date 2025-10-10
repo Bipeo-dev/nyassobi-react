@@ -17,6 +17,8 @@ import { AnimatePresence } from 'motion/react';
 import PrestationPage from './pages/PrestationPage';
 import { ApolloProvider } from '@apollo/client/react';
 import wordPressClient from './api/wordPressQuery';
+import WordPressPage from './pages/WordPressPage';
+import BlogIndex from './pages/BlogIndex';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
       {
         path: "prestation",
         element: <PrestationPage/>
+      },
+      {
+        path: "blog",
+        element: <BlogIndex/>
+      },
+      {
+        path: "*",
+        element: <WordPressPage/>
       }
     ]
   },

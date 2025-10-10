@@ -1,7 +1,23 @@
 import { ApolloClient, InMemoryCache, gql, HttpLink } from "@apollo/client";
 
-const defaultEndpoint = "http://react-nyassobi.local/graphql";
-const graphQLEndpoint = import.meta.env.VITE_WORDPRESS_GRAPHQL_URL ?? defaultEndpoint;
+const DEFAULT_WORDPRESS_GRAPHQL_ENDPOINT = "http://react-nyassobi.local/graphql";
+
+export const graphQLEndpoint =
+  import.meta.env.VITE_WORDPRESS_GRAPHQL_URL ?? DEFAULT_WORDPRESS_GRAPHQL_ENDPOINT;
+
+const deriveWordPressBaseUrl = (endpoint: string): string | null => {
+  try {
+    const parsed = new URL(endpoint);
+    const pathnameWithoutGraphql = parsed.pathname.replace(/\/graphql\/?$/, "/");
+    const trimmedPath = pathnameWithoutGraphql.replace(/\/+$/, "");
+    const basePath = trimmedPath === "" ? "" : trimmedPath;
+    return `${parsed.protocol}//${parsed.host}${basePath}`;
+  } catch {
+    return null;
+  }
+};
+
+export const wordpressBaseUrl = deriveWordPressBaseUrl(graphQLEndpoint);
 
 const client = new ApolloClient({
   link: new HttpLink({ uri: graphQLEndpoint }),

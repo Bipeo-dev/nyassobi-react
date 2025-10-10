@@ -1,32 +1,49 @@
 // hooks/useMenu.ts
 import { useEffect, useMemo, useState } from "react";
-import { wpquery } from "../api/wordPressQuery";
+import { wpquery, wordpressBaseUrl } from "../api/wordPressQuery";
 
-const DEFAULT_MENU_SLUG = "main-menu";
+const DEFAULT_MENU_LOCATION = "PRIMARY";
+
+type MenuLocation = string;
 
 const MENU_QUERY = `
-  query GetMenu($slug: ID!) {
-    menu(id: $slug, idType: SLUG) {
-      databaseId
-      name
-      menuItems(first: 100) {
-        nodes {
-          id
-          databaseId
-          parentId
-          label
-          path
-          uri
-          url
-          childItems {
-            nodes {
-              id
-              databaseId
-              parentId
-              label
-              path
-              uri
-              url
+  query GetMenu($location: MenuLocationEnum!) {
+    menus(where: { location: $location }) {
+      nodes {
+        count
+        id
+        databaseId
+        name
+        slug
+        menuItems(first: 100) {
+          nodes {
+            id
+            databaseId
+            title
+            label
+            description
+            url
+            uri
+            path
+            cssClasses
+            linkRelationship
+            target
+            parentId
+            childItems(first: 100) {
+              nodes {
+                id
+                databaseId
+                title
+                label
+                description
+                url
+                uri
+                path
+                cssClasses
+                linkRelationship
+                target
+                parentId
+              }
             }
           }
         }
@@ -40,9 +57,14 @@ interface RawMenuItem {
   databaseId: number;
   parentId: string | null;
   label: string;
+  title?: string | null;
   path?: string | null;
   uri?: string | null;
   url?: string | null;
+  description?: string | null;
+  cssClasses?: string[] | null;
+  linkRelationship?: string | null;
+  target?: string | null;
   childItems?: {
     nodes: RawMenuItem[];
   } | null;
@@ -56,15 +78,73 @@ export interface MenuItem {
 }
 
 interface MenuQueryResponse {
-  menu?: {
-    menuItems?: {
-      nodes?: RawMenuItem[];
-    };
+  menus?: {
+    nodes?: Array<{
+      menuItems?: {
+        nodes?: RawMenuItem[];
+      };
+    }>;
   };
 }
 
+const wordpressBase = (() => {
+  if (!wordpressBaseUrl) {
+    return null;
+  }
+
+  try {
+    return new URL(wordpressBaseUrl);
+  } catch {
+    return null;
+  }
+})();
+
+const stripWordPressDomain = (candidate: string): string => {
+  if (!candidate || !wordpressBaseUrl || !wordpressBase) {
+    return candidate;
+  }
+
+  if (/^https?:\/\//i.test(candidate)) {
+    try {
+      const candidateUrl = new URL(candidate);
+
+      if (candidateUrl.host === wordpressBase.host) {
+        let relativePath = candidateUrl.pathname;
+
+        if (wordpressBase.pathname && wordpressBase.pathname !== "/") {
+          if (relativePath.startsWith(wordpressBase.pathname)) {
+            relativePath = relativePath.slice(wordpressBase.pathname.length) || "/";
+          }
+        }
+
+        const ensuredLeadingSlash = relativePath.startsWith("/")
+          ? relativePath
+          : `/${relativePath}`;
+
+        const combined = `${ensuredLeadingSlash}${candidateUrl.search}${candidateUrl.hash}`;
+        return combined || "/";
+      }
+
+      return candidate;
+    } catch {
+      return candidate;
+    }
+  }
+
+  if (candidate.startsWith(wordpressBaseUrl)) {
+    const remainder = candidate.slice(wordpressBaseUrl.length);
+    if (!remainder) {
+      return "/";
+    }
+
+    return remainder.startsWith("/") ? remainder : `/${remainder}`;
+  }
+
+  return candidate || "/";
+};
+
 const normalisePath = (uri?: string | null, url?: string | null, path?: string | null) => {
-  const candidate = uri ?? path ?? url ?? "/";
+  const candidate = stripWordPressDomain(uri ?? path ?? url ?? "/");
 
   if (!candidate) {
     return "/";
@@ -88,17 +168,17 @@ const normaliseMenu = (nodes: RawMenuItem[] = []): MenuItem[] =>
     .filter((node) => !node.parentId)
     .map((node) => ({
       id: node.id,
-      label: node.label,
+      label: node.label ?? node.title ?? "",
       path: normalisePath(node.uri, node.url, node.path),
       children: (node.childItems?.nodes ?? []).map((child) => ({
         id: child.id,
-        label: child.label,
+        label: child.label ?? child.title ?? "",
         path: normalisePath(child.uri, child.url, child.path),
         children: [],
       })),
     }));
 
-export function useMenu(slug: string = DEFAULT_MENU_SLUG) {
+export function useMenu(location: MenuLocation = DEFAULT_MENU_LOCATION) {
   const [rawMenuItems, setRawMenuItems] = useState<RawMenuItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -113,14 +193,15 @@ export function useMenu(slug: string = DEFAULT_MENU_SLUG) {
       try {
         const data = await wpquery<MenuQueryResponse>({
           query: MENU_QUERY,
-          variables: { slug },
+          variables: { location },
         });
 
         if (!isMounted) {
           return;
         }
 
-        const items: RawMenuItem[] = data?.menu?.menuItems?.nodes ?? [];
+        const menuNodes = data?.menus?.nodes ?? [];
+        const items: RawMenuItem[] = menuNodes[0]?.menuItems?.nodes ?? [];
         setRawMenuItems(items);
       } catch (err) {
         if (!isMounted) {
@@ -140,7 +221,7 @@ export function useMenu(slug: string = DEFAULT_MENU_SLUG) {
     return () => {
       isMounted = false;
     };
-  }, [slug]);
+  }, [location]);
 
   const menuItems = useMemo(() => normaliseMenu(rawMenuItems), [rawMenuItems]);
 
