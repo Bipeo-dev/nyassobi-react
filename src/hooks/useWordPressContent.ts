@@ -20,6 +20,13 @@ const POSTS_QUERY = `
             altText
           }
         }
+        categories {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
       }
     }
   }
@@ -65,6 +72,13 @@ interface RawWordPressNode {
       altText?: string | null;
     } | null;
   } | null;
+  categories?: {
+    nodes?: Array<{
+      id: string;
+      name?: string | null;
+      slug?: string | null;
+    }> | null;
+  } | null;
 }
 
 export interface WordPressContentNode {
@@ -81,6 +95,11 @@ export interface WordPressContentNode {
     sourceUrl: string;
     altText: string;
   } | null;
+  categories: Array<{
+    id: string;
+    name: string;
+    slug: string;
+  }>;
 }
 
 interface UseWordPressContentState {
@@ -95,6 +114,7 @@ interface UseWordPressContentOptions {
 
 const normaliseNode = (node: RawWordPressNode): WordPressContentNode => {
   const featuredImageNode = node.featuredImage?.node;
+  const categoryNodes = node.categories?.nodes ?? [];
 
   return {
     id: node.id,
@@ -112,6 +132,13 @@ const normaliseNode = (node: RawWordPressNode): WordPressContentNode => {
           altText: featuredImageNode.altText ?? "",
         }
       : null,
+    categories: categoryNodes
+      .filter((category): category is { id: string; name?: string | null; slug?: string | null } => Boolean(category?.id))
+      .map((category) => ({
+        id: category.id,
+        name: category.name ?? "",
+        slug: category.slug ?? "",
+      })),
   };
 };
 

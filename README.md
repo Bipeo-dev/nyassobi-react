@@ -65,7 +65,9 @@ Cette variable remplace l'endpoint WordPress par défaut (`http://react-nyassobi
 
 - Le composant `WordPressPage` (`src/pages/WordPressPage.jsx`) se charge de toutes les routes non explicites.
 - `nodeByUri` est interrogé avec le chemin courant : si le contenu est introuvable, une erreur 404 est remontée pour afficher la page d'erreur globale.
+- Un composant `Loader` (`src/components/Loader.jsx`) affiche une animation de chargement plein écran pendant les requêtes.
 - Les hooks `useWordPressPages` et `useWordPressPosts` (`src/hooks/useWordPressContent.ts`) exposent des listings normalisés pouvant être réutilisés ailleurs.
+- La page `Contact` (`/contact`) propose un formulaire mailto et réutilise le widget social du footer pour afficher tous les réseaux.
 
 ## Blog
 
@@ -87,7 +89,7 @@ Cette variable remplace l'endpoint WordPress par défaut (`http://react-nyassobi
 | Route React | Contenu |
 | ----------- | ------- |
 | `/` | Accueil avec carrousel |
-| `/adhesion`, `/donation`, `/prestation`, `/mentions-legales` | Pages statiques locales |
+| `/adhesion`, `/donation`, `/prestation`, `/mentions-legales`, `/contact` | Pages statiques locales |
 | `/blog` | Listing des articles WordPress |
 | Toute autre route | `WordPressPage` via WPGraphQL (pages/posts) |
 

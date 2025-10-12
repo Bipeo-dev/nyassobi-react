@@ -19,6 +19,8 @@ import { ApolloProvider } from '@apollo/client/react';
 import wordPressClient from './api/wordPressQuery';
 import WordPressPage from './pages/WordPressPage';
 import BlogIndex from './pages/BlogIndex';
+import PresentationPage from './pages/PresentationPage';
+import ContactPage from './pages/ContactPage';
 
 const router = createBrowserRouter([
   {
@@ -39,15 +41,23 @@ const router = createBrowserRouter([
         element: <AdhesionPage/>
       },
       {
-        path: "donation",
+        path: "donations",
         element: <DonationPage/>
       },
       {
-        path: "prestation",
+        path: "prestations",
         element: <PrestationPage/>
       },
       {
-        path: "blog",
+        path: "presentation",
+        element: <PresentationPage/>
+      },
+      {
+        path: "contact",
+        element: <ContactPage/>
+      },
+      {
+        path: "news",
         element: <BlogIndex/>
       },
       {

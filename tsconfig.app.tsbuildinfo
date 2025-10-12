@@ -1,1 +1,1 @@
-{"root":["./src/vite-env.d.ts","./src/api/wordpressquery.ts","./src/hooks/createwpmenu.ts"],"version":"5.6.3"}
+{"root":["./src/vite-env.d.ts","./src/api/wordpressquery.ts","./src/hooks/createwpmenu.ts","./src/hooks/usewordpresscontent.ts"],"version":"5.6.3"}

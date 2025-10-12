@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { wpquery } from "../api/wordPressQuery";
+import Loader from "../components/Loader";
+
+import styles2 from './HomePage.module.scss';
 
 const NODE_BY_URI_QUERY = `
   query GetNodeByUri($uri: String!) {
@@ -122,7 +125,7 @@ function WordPressPage() {
   }, [uri]);
 
   if (loading) {
-    return <div>Chargement du contenu...</div>;
+    return <Loader label="Chargement du contenu..." />;
   }
 
   if (error) {
@@ -146,19 +149,25 @@ function WordPressPage() {
   }
 
   return (
-    <article>
-      {node.title && <h1 dangerouslySetInnerHTML={{ __html: node.title }} />}
-      {node.featuredImage?.node?.sourceUrl ? (
-        <figure>
-          <img
-            src={node.featuredImage.node.sourceUrl}
-            alt={node.featuredImage.node.altText ?? ""}
-            style={{ maxWidth: "100%" }}
-          />
-        </figure>
-      ) : null}
-      <div dangerouslySetInnerHTML={{ __html: node.content ?? node.excerpt ?? "" }} />
-    </article>
+    <div className={styles2['mainContent']}>
+      <div className={styles2['mainContent']}>
+        <div className={styles2['homePage']}>
+          <article>
+            {node.title && <h1 dangerouslySetInnerHTML={{ __html: node.title }} />}
+            {node.featuredImage?.node?.sourceUrl ? (
+              <figure>
+                <img
+                  src={node.featuredImage.node.sourceUrl}
+                  alt={node.featuredImage.node.altText ?? ""}
+                  style={{ maxWidth: "100%" }}
+                />
+              </figure>
+            ) : null}
+            <div dangerouslySetInnerHTML={{ __html: node.content ?? node.excerpt ?? "" }} />
+          </article>
+        </div>
+      </div>
+    </div>
   );
 }
 
