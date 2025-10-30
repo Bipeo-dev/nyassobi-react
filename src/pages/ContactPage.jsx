@@ -169,7 +169,7 @@ function ContactPage() {
                     className={styles.textarea}
                     value={formValues.message}
                     onChange={handleChange}
-                    placeholder="Donnez-nous le maximum de détails, Nyasso adore ça !"
+                    placeholder="Donnez-nous le maximum de détails, Nybi adore ça !"
                     rows={6}
                   />
                   {errors.message ? <span className={styles.error}>{errors.message}</span> : null}

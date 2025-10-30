@@ -6,8 +6,10 @@ import Loader from "../components/Loader";
 import styles from "./WordPressPage.module.scss";
 import TitleNyasso from "../TitleNyasso";
 import NyassoButtonOne from "../components/NyassoButtonOne";
-import WIPComponent from "../WIPComponent";
+import DonNyassoWidget from "../components/DonNyassoWidget";
 import NyassoButtonTwo from "../components/NyassoButtonTwo";
+
+import './WordpressCSS.scss'
 
 const VOID_ELEMENTS = new Set([
   "area",
@@ -387,6 +389,7 @@ const createComponentRegistry = (definitions) => {
 const COMPONENT_REGISTRY = createComponentRegistry({
   NyassoButtonOne: { component: NyassoButtonOne },
   NyassoButtonTwo: { component: NyassoButtonTwo },
+  DonNyassoWidget: { component: DonNyassoWidget },
 });
 
 const convertAttributes = (element) => {

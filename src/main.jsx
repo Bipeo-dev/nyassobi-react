@@ -36,22 +36,22 @@ const router = createBrowserRouter([
         path: "mentions-legales",
         element: <LegalsMentionPage/>
       },
-      {
-        path: "adhesion",
-        element: <AdhesionPage/>
-      },
-      {
-        path: "donations",
-        element: <DonationPage/>
-      },
-      {
-        path: "prestations",
-        element: <PrestationPage/>
-      },
-      {
-        path: "presentation",
-        element: <PresentationPage/>
-      },
+      // {
+      //   path: "adhesion",
+      //   element: <AdhesionPage/>
+      // },
+      // {
+      //   path: "donations",
+      //   element: <DonationPage/>
+      // },
+      // {
+      //   path: "prestations",
+      //   element: <PrestationPage/>
+      // },
+      // {
+      //   path: "presentation",
+      //   element: <PresentationPage/>
+      // },
       {
         path: "contact",
         element: <ContactPage/>
