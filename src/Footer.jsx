@@ -14,7 +14,7 @@ function Footer() {
   return (
     <footer>
         <img className={styles['standNyasso']} src={NyassoStand} />
-        <div style={{overflow:"hidden", marginBottom:"-10px"}}>
+        <div className={styles['footerSVG']}>
           <WaveFooter/>
         </div>
         <div className={`${styles['footer-nav']}`}>

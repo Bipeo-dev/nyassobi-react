@@ -137,6 +137,7 @@ function Navbar() {
         {error && !loading && <div className={styles.item}>Impossible de charger le menu</div>}
         {!loading && !error && topLevelItems.map((item) => renderMobileMenuItem(item))}
       </div>
+      
     </header>
   );
 }

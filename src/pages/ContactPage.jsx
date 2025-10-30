@@ -4,6 +4,8 @@ import styles from "./ContactPage.module.scss";
 import layoutStyles from "./HomePage.module.scss";
 import TitleNyasso from "../TitleNyasso";
 
+import Footer from '../Footer'
+
 const CONTACT_EMAIL = "nyassobi.association@gmail.com";
 
 const initialFormState = {
@@ -89,7 +91,7 @@ function ContactPage() {
     [formValues, mailtoHref, validate],
   );
 
-  return (
+  return (<>
     <div className={layoutStyles.mainContent}>
       <div className={layoutStyles.mainContent}>
         <div className={layoutStyles.homePage}>
@@ -101,6 +103,8 @@ function ContactPage() {
                 Utilisez le formulaire ci-dessous ou contactez-nous directement via nos réseaux.
               </p>
             </section>
+
+            <TitleNyasso subtitle="Formulaire de contact"/>
 
             <section className={styles.contactContent}>
               <form className={styles.contactForm} onSubmit={handleSubmit} noValidate>
@@ -204,7 +208,8 @@ function ContactPage() {
         </div>
       </div>
     </div>
-  );
+    <Footer/>
+  </>);
 }
 
 export default ContactPage;

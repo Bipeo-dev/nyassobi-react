@@ -64,6 +64,21 @@
     cursor: pointer;
 }
 
+.responsiveHide {
+    display: block;
+}
+
+@media (max-width: 1279px) {
+    .waveJoinOrganization-link,
+    .adhesion-text,
+    .waveJoinOrganization-clip,
+    .waveJoinOrganization-2 {
+        display: none !important;
+        pointer-events: none;
+        visibility: hidden;
+    }
+}
+
 .waveJoinOrganization-clip:hover .idolCat {
     transform: translateY(-12px); /* ou une autre animation comme rotate, scale, etc. */
     transition: transform 0.1s ease-out;

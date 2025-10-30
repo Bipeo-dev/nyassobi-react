@@ -1,11 +1,21 @@
 .mainContent {
     display: flex;
     flex-direction: row;
+
+    @media (max-width: 1279px) {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
 }
 
 .LineScrolling {
     position: relative;
     padding-left: 95px;
+
+    @media (max-width: 1279px) {
+        display: none;
+    }
 }
 
 .actuallyCat {
@@ -18,6 +28,13 @@
 .homePage {
     padding-left: 200px;
     padding-right: 425px;
+
+    @media (max-width: 1279px) {
+        width: 100%;
+        padding-left: clamp(1rem, 4vw, 2rem);
+        padding-right: clamp(1rem, 4vw, 2rem);
+        box-sizing: border-box;
+    }
 }
 
 .homeScroller {
@@ -25,7 +42,9 @@
     font-size: 18px;
 
     max-height: 250px;
-    overflow: scroll;
+    overflow-y: scroll;
+
+    overflow-x: hidden;
 }
 
 .SvgSplash {
@@ -47,6 +66,10 @@
 
 .SpacerSvgSplash {
     padding-top: 75vh;
+
+    @media (max-width: 811px) {
+        padding-top: 6vh;
+    }
 }
 
 .wrapperArtistNyasso {
@@ -60,4 +83,12 @@
 
     top: -51px;
     right: -350px;
+
+    @media (max-width: 1238px) {
+        top: -17px;
+        right: 23px;
+
+        width: 50vmin;
+    }
+
 }

@@ -6,6 +6,13 @@ footer {
     
 }
 
+.footerSVG {
+    overflow: hidden;
+    margin-bottom: -10px;
+
+    height: 400px;
+}
+
 footer svg {
     padding-top: 10px;
 }
@@ -16,6 +23,10 @@ footer svg {
     left: 33px;
     top: 10px;
     width: 20vw;
+
+    @media (max-width: 502px) {
+        width: 40vw;
+    }
 }
 
 .footer-nav {
@@ -81,6 +92,8 @@ footer svg {
 
     padding-top: 10px;
     padding-right: 15px;
+
+    color: white;
 }
 
 .footer-social-icons {
@@ -137,6 +150,9 @@ footer svg {
         margin: auto;
 
         color:#59baae;
+
+        margin-top: 0;
+
     }
 
     margin: 5px;

@@ -6,6 +6,7 @@ import Loader from "../components/Loader";
 import styles2 from "./HomePage.module.scss";
 import styles from "./BlogIndex.module.scss";
 import TitleNyasso from "../TitleNyasso";
+import Footer from "../Footer";
 
 const ensureLeadingSlash = (value) => {
   if (!value) {
@@ -123,7 +124,7 @@ function BlogIndex() {
     throw routedError;
   }
 
-  return (
+  return (<>
     <div className={styles2['mainContent']}>
       <div className={styles2['mainContent']}>
         <div className={styles2['homePage']}>
@@ -271,7 +272,9 @@ function BlogIndex() {
         </div>
       </div>
     </div>
-  );
+    <Footer/>
+  
+  </>);
 }
 
 export default BlogIndex;

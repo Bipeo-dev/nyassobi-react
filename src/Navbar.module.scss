@@ -17,7 +17,7 @@
   padding: 1.25rem clamp(1.5rem, 6vw, 4rem) 0;
   box-sizing: border-box;
 
-  @media (max-width: 768px) {
+  @media (max-width: 811px) {
     justify-content: space-between;
     padding: 1rem clamp(1rem, 6vw, 1.5rem) 0;
   }
@@ -32,7 +32,7 @@
   align-items: center;
   gap: 0.75rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 811px) {
     display: none;
   }
 }
@@ -41,7 +41,7 @@
   color: #ffffff;
   opacity: 0.6;
 
-  @media (max-width: 768px) {
+  @media (max-width: 811px) {
     display: none;
   }
 }
@@ -60,7 +60,7 @@
     filter: drop-shadow(0 0 5px #59baaf);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 811px) {
     font-size: 20px;
     padding: 12px 0;
     width: 100%;
@@ -83,7 +83,7 @@
     display: block;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 811px) {
     border: none;
   }
 }
@@ -93,7 +93,9 @@
   position: absolute;
   top: calc(100% - 10px);
   left: -10px;
-  width: calc(100% + 20px);
+  
+  width: 100%;
+
   z-index: 5;
   background: #ed5e24;
   border-radius: 0 0 30px 30px;
@@ -101,7 +103,7 @@
   border-right: #ffffff 10px solid;
   border-bottom: #ffffff 10px solid;
 
-  @media (max-width: 768px) {
+  @media (max-width: 811px) {
     position: static;
     display: flex;
     flex-direction: column;
@@ -124,8 +126,9 @@
   align-items: flex-end;
   transition: transform 0.2s ease;
 
-  @media (max-width: 768px) {
+  @media (max-width: 811px) {
     display: flex;
+    margin: auto;
   }
 }
 
@@ -165,12 +168,12 @@
 .menuMobilePanel {
   display: none;
 
-  @media (max-width: 768px) {
+  @media (max-width: 811px) {
     position: absolute;
     top: calc(100% + 0.75rem);
     left: 0;
     width: 100%;
-    padding: 1.25rem clamp(1rem, 6vw, 1.75rem) 1.75rem;
+    padding: 16rem clamp(1rem, 6vw, 1.75rem) 1.75rem;
     box-sizing: border-box;
     display: none;
     flex-direction: column;
@@ -179,11 +182,13 @@
     backdrop-filter: blur(12px);
     border-radius: 18px;
     box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+
+    z-index: 2;
   }
 }
 
 .menuMobilePanelOpen {
-  @media (max-width: 768px) {
+  @media (max-width: 811px) {
     display: flex;
   }
 }
@@ -214,4 +219,8 @@
 .menuDropdown,
 .menuMobilePanel {
   transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+@media (max-width: 1280px) {
+
 }

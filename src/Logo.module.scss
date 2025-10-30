@@ -9,8 +9,23 @@
 .logo {
     img {
         width: 400px;
+
+        @media (max-width: 811px) {
+            width: 80vmin;
+        }
     }
     &:hover {
         filter: drop-shadow(0 0 10px #ff895b61);
     }
+
+
+}
+
+@media (max-width: 1280px) {
+
+.nyassobi-logo {
+    left: 5.5vw;
+    top: 125px;
+}
+
 }
