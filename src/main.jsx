@@ -52,10 +52,10 @@ const router = createBrowserRouter([
       //   path: "presentation",
       //   element: <PresentationPage/>
       // },
-      {
-        path: "contact",
-        element: <ContactPage/>
-      },
+      // {
+      //   path: "contact",
+      //   element: <ContactPage/>
+      // },
       {
         path: "news",
         element: <BlogIndex/>

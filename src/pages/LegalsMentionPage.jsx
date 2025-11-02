@@ -14,7 +14,12 @@ import { motion } from "motion/react"
 
 import TitleNyasso from "../TitleNyasso";
 
+import { useNyassobiSettings } from "../hooks/useNyassobiSettings";
+
+
 function LegalsMentionPage() {
+
+    const { settings } = useNyassobiSettings();
 
   return (<motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
         <div className={styles['mainContent']}>
@@ -42,7 +47,7 @@ function LegalsMentionPage() {
                         <strong>Nyassobi</strong> <br/>
                         55, rue Joseph Hue <br/>
                         76250 Déville-lès-Rouen – France <br/>
-                        Mail : nyassobi.association@gmail.com <br/>
+                        Mail : {settings.contactEmail} <br/>
                         Site : <a href="www.nyassobi.fr">www.nyassobi.fr</a> <br/>
                         <br/>
                         Association loi 1901, <br/>

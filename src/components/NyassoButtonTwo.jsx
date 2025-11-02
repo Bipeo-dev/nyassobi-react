@@ -1,23 +1,24 @@
 import styles from "./NyassoButtonTwo.module.scss";
-
+import { useNyassobiSettings } from "../hooks/useNyassobiSettings";
 
 function NyassoButtonTwo() {
+  const { settings } = useNyassobiSettings();
 
-  return (<div className={styles.nyassoBtn}>
+  return (
+    <div className={styles.nyassoBtn}>
+      <a href={settings.signupFormUrl} target="_blank" rel="noopener noreferrer">
+        <button className={styles.button}>
+          Formulaire d'adhésion
+        </button>
+      </a>
 
-    <a href="https://framaforms.org/adhesion-a-lassociation-nyassobi-1744015994" target="_blank">
-      <button className={styles.button}>
-        Formulaire d'adhesion
-      </button>
-    </a>
-
-    <a href="https://drive.google.com/file/d/1KJ-kZrnKLHoA9AM3qO4qKPcNdBudSwXJ/" target="_blank">
-      <button className={styles.button}>
-        Autorisation parentale
-      </button>
-    </a>
-
-  </div>);
+      <a href={settings.parentalAgreementUrl} target="_blank" rel="noopener noreferrer">
+        <button className={styles.button}>
+          Autorisation parentale
+        </button>
+      </a>
+    </div>
+  );
 }
 
 export default NyassoButtonTwo;

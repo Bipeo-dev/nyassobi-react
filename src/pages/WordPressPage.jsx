@@ -8,6 +8,9 @@ import TitleNyasso from "../TitleNyasso";
 import NyassoButtonOne from "../components/NyassoButtonOne";
 import DonNyassoWidget from "../components/DonNyassoWidget";
 import NyassoButtonTwo from "../components/NyassoButtonTwo";
+import NyassoContact from "../components/NyassoContact";
+import NyassoSocial from "../components/NyassoSocial";
+
 
 import './WordpressCSS.scss'
 
@@ -390,6 +393,8 @@ const COMPONENT_REGISTRY = createComponentRegistry({
   NyassoButtonOne: { component: NyassoButtonOne },
   NyassoButtonTwo: { component: NyassoButtonTwo },
   DonNyassoWidget: { component: DonNyassoWidget },
+  NyassoContact: { component: NyassoContact },
+  NyassoSocial: { component: NyassoSocial },
 });
 
 const convertAttributes = (element) => {
@@ -630,6 +635,9 @@ const initialState = {
 function WordPressPage() {
   const location = useLocation();
   const [{ loading, error, node }, setState] = useState(initialState);
+
+  console.log("NODE: ", node);
+
   const htmlContent = node?.content ?? node?.excerpt ?? "";
   const parsedContent = useMemo(
     () => convertWordPressHtml(htmlContent),
@@ -659,6 +667,7 @@ function WordPressPage() {
 
         const fetchedNode = data?.nodeByUri ?? null;
 
+        
         if (!fetchedNode) {
           setState({
             loading: false,
@@ -724,6 +733,8 @@ function WordPressPage() {
     typeName === "news" ||
     typeName === "article" ||
     typeName.endsWith("post");
+
+  console.log("parsedContent: ", parsedContent);
 
   if (!isArticle) {
     return (
