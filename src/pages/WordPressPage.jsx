@@ -13,6 +13,7 @@ import NyassoSocial from "../components/NyassoSocial";
 
 
 import './WordpressCSS.scss'
+import Footer from "../Footer";
 
 const VOID_ELEMENTS = new Set([
   "area",
@@ -737,7 +738,7 @@ function WordPressPage() {
   console.log("parsedContent: ", parsedContent);
 
   if (!isArticle) {
-    return (
+    return (<>
       <div className={styles.pageViewport}>
         <article className={styles.simplePage}>
           {node.title ? <TitleNyasso title={node.title} /> : null}
@@ -755,10 +756,11 @@ function WordPressPage() {
           </div>
         </article>
       </div>
-    );
+      <Footer/>
+    </>);
   }
 
-  return (
+  return (<>
     <div className={styles.pageViewport}>
       <article className={styles.articleCard}>
         <header className={styles.articleHeader}>
@@ -778,7 +780,8 @@ function WordPressPage() {
         </div>
       </article>
     </div>
-  );
+    <Footer/>
+  </>);
 }
 
 export default WordPressPage;
