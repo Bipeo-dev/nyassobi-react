@@ -80,7 +80,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ApolloProvider client={wordPressClient}>
       <HttpsRedirect>
         <AnimatePresence>
-          <Suspense fallback={<div className="app-loader">Chargement...</div>}>
+          <Suspense fallback={<div className="app-loader"></div>}>
             <RouterProvider router={router} />
           </Suspense>
         </AnimatePresence>
