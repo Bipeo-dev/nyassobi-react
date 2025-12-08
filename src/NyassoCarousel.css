@@ -80,3 +80,10 @@
   font-weight: 600;
   line-height: 1.4;
 }
+
+.carousel-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 12rem;
+}

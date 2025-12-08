@@ -9,6 +9,7 @@ export interface NyassobiSettings {
   associationStatusUrl: string;
   internalRulesUrl: string;
   introTextNyassobi: string;
+  pressKitUrl: string;
 }
 
 interface NyassobiSettingsQueryData {
@@ -19,6 +20,7 @@ interface NyassobiSettingsQueryData {
     associationStatusUrl?: string | null;
     internalRulesUrl?: string | null;
     introTextNyassobi?: string | null;
+    pressKitUrl?: string | null;
   } | null;
 }
 
@@ -31,6 +33,7 @@ const GET_NYASSOBI_SETTINGS = gql`
       associationStatusUrl
       internalRulesUrl
       introTextNyassobi
+      pressKitUrl
     }
   }
 `;
@@ -42,6 +45,7 @@ const DEFAULT_NYASSOBI_SETTINGS: NyassobiSettings = {
   associationStatusUrl: "https://drive.google.com/file/d/11PtZQckyWmOuyLgU2P0zW-4XhftSlCic/",
   internalRulesUrl: "https://docs.google.com/document/d/1IKJQm1VKrdHKaLktpq2G3O2L9XFkUd2t8zSlVJFrqEQ/",
   introTextNyassobi: "",
+  pressKitUrl: "",
 };
 
 const toValidSettingValue = (value: unknown): string | null => {
@@ -69,6 +73,7 @@ const normaliseSettings = (
     toValidSettingValue(rawSettings?.internalRulesUrl) ?? DEFAULT_NYASSOBI_SETTINGS.internalRulesUrl,
   introTextNyassobi:
     toValidSettingValue(rawSettings?.introTextNyassobi) ?? DEFAULT_NYASSOBI_SETTINGS.introTextNyassobi,
+  pressKitUrl: toValidSettingValue(rawSettings?.pressKitUrl) ?? DEFAULT_NYASSOBI_SETTINGS.pressKitUrl,
 });
 
 export const format_settings_for_graphql = normaliseSettings;

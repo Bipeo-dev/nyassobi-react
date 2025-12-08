@@ -4,6 +4,7 @@ import styles from "./ContactPage.module.scss";
 import layoutStyles from "./HomePage.module.scss";
 import TitleNyasso from "../TitleNyasso";
 import Footer from "../Footer";
+import PressKitButton from "../components/PressKitButton";
 
 import { useNyassobiSettings } from "../hooks/useNyassobiSettings";
 
@@ -43,6 +44,8 @@ function ContactPage() {
                       {settings.contactEmail}
                     </a>
                   </p>
+                  <h2>Press Kit</h2>
+                  <PressKitButton />
                 </aside>
               </section>
             </div>

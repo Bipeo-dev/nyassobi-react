@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import "./NyassoCarousel.css";
 
 import { Pagination } from "swiper/modules";
+import Loader from "./components/Loader";
 
 const ensureLeadingSlash = (value) => {
   if (!value) {
@@ -27,7 +28,11 @@ const stripHtml = (value) => {
 
 function NyassoCarousel({ posts = [], loading = false, error = null, onSlideChange = () => {} }) {
   if (loading) {
-    return <div>Chargement des actualités...</div>;
+    return (
+      <div className="carousel-loader">
+        <Loader label="Chargement des actualités..." />
+      </div>
+    );
   }
 
   if (error) {

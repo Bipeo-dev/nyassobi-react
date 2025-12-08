@@ -190,7 +190,7 @@ function BlogIndex() {
                       <li key={post.id} className={styles.postItem}>
                         <div>
                           <h2>
-                            <Link to={targetUri}>
+                            <Link to={targetUri} style={{textDecoration: "none"}}>
                               <TitleNyasso subtitle={ post?.title }/>
                             </Link>
                           </h2>

@@ -214,7 +214,7 @@ function AteliersPage() {
                         <li key={atelier.id} className={newsStyles.postItem}>
                           <div>
                             <h2>
-                              <Link to={detailUrl}>
+                              <Link to={detailUrl} style={{textDecoration: "none"}}>
                                 <TitleNyasso subtitle={atelier.title} />
                               </Link>
                             </h2>

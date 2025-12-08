@@ -10,6 +10,7 @@ import DonNyassoWidget from "../components/DonNyassoWidget";
 import NyassoButtonTwo from "../components/NyassoButtonTwo";
 import NyassoContact from "../components/NyassoContact";
 import NyassoSocial from "../components/NyassoSocial";
+import PressKitButton from "../components/PressKitButton";
 
 
 import './WordpressCSS.scss'
@@ -396,6 +397,8 @@ const COMPONENT_REGISTRY = createComponentRegistry({
   DonNyassoWidget: { component: DonNyassoWidget },
   NyassoContact: { component: NyassoContact },
   NyassoSocial: { component: NyassoSocial },
+  PressKitButton: { component: PressKitButton },
+  PressKit: { component: PressKitButton },
 });
 
 const convertAttributes = (element) => {
